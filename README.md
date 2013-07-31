@@ -1,2 +1,1 @@
-poc_authority
-=============
+PoC of a Doorkeeper OAuth2 provider.
