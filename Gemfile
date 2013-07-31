@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.14'
 
-gem 'bson_ext'
+gem 'bson_ext', '1.5.2'
 gem 'oj'
 
 # Bundle edge Rails instead:
