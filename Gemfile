@@ -15,7 +15,7 @@ gem 'doorkeeper'
 
 # db
 gem 'mongoid', '2.4.6'
-
+gem 'sqlite3'
 
 group :development do
   gem 'jazz_hands'
