@@ -14,7 +14,7 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'doorkeeper'
 
 # db
-gem 'mongoid', '2.4.6'
+gem 'mongoid', '~> 3.1.0'
 gem 'sqlite3'
 
 group :development do
