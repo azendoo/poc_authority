@@ -1,11 +1,11 @@
 Doorkeeper.configure do
   # Change the ORM that doorkeeper will use.
-  # Currently supported options are :active_record, :mongoid2, :mongoid3, :mongo_mapper
-  orm :mongoid2
+  # Currently supported options are :active_record, :mongoid2, :mongoid3, :mongoid4, :mongo_mapper
+  orm :mongoid4
 
   # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do
-    current_user || warden.authenticate!(:scope => :user)
+    raise "Please configure doorkeeper resource_owner_authenticator block located in #{__FILE__}"
     # Put your resource owner authentication logic here.
     # Example implementation:
     #   User.find_by_id(session[:user_id]) || redirect_to(new_user_session_url)
@@ -23,7 +23,7 @@ Doorkeeper.configure do
 
   # Access token expiration time (default 2 hours).
   # If you want to disable expiration, set this to nil.
-  access_token_expires_in 2.hours
+  # access_token_expires_in 2.hours
 
   # Issue access tokens with refresh token (disabled by default)
   # use_refresh_token
@@ -36,8 +36,8 @@ Doorkeeper.configure do
 
   # Define access token scopes for your provider
   # For more information go to https://github.com/applicake/doorkeeper/wiki/Using-Scopes
-  default_scopes  :public
-  optional_scopes :write
+  # default_scopes  :public
+  # optional_scopes :write, :update
 
   # Change the way client credentials are retrieved from the request object.
   # By default it retrieves first from the `HTTP_AUTHORIZATION` header, then
