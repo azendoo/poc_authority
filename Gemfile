@@ -7,6 +7,7 @@ gem 'rails', '3.2.14'
 
 gem "mongoid", "~> 3.1.5"
 gem 'sqlite3'
+gem 'jazz_hands'
 
 gem "devise", "~> 3.1.0"
 gem "doorkeeper", "~> 0.7.2"
