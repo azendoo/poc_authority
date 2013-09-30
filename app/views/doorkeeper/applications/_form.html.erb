@@ -5,6 +5,14 @@
     <% end %>
 
     <div class="clearfix">
+      <%= f.label :owner %>
+      <div class="input">
+        <%= f.collection_select :owner_id, User.all, :id, :email, prompt: true %>
+        <%= errors_for application, :owner %>
+      </div>
+    </div>
+
+    <div class="clearfix">
       <%= f.label :name %>
       <div class="input">
         <%= f.text_field :name %>
@@ -22,6 +30,8 @@
         <% end %>
       </div>
     </div>
+
+    <div class="clearfix"></div>
 
     <div class="actions">
       <%= f.submit :Submit, :class => "btn primary" %>

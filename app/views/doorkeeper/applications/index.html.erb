@@ -10,7 +10,7 @@
       <tr>
         <th>Name</th>
         <th>Callback url</th>
-        <th></th>
+        <th>Owner</th>
         <th></th>
       </tr>
     </thead>
@@ -19,6 +19,7 @@
         <tr id="application_<%= application.id %>">
           <td><%= link_to application.name, [:oauth, application] %></td>
           <td><%= application.redirect_uri %></td>
+          <td><%= application.owner.email %></td>
           <td><%= link_to 'Edit', edit_oauth_application_path(application) %></td>
           <td><%= link_to 'Destroy', [:oauth, application], :data => { :confirm => 'Are you sure?' }, :method => :delete %></td>
         </tr>
