@@ -1,14 +1,15 @@
 Doorkeeper.configure do
   # Change the ORM that doorkeeper will use.
-  # Currently supported options are :active_record, :mongoid2, :mongoid3, :mongoid4, :mongo_mapper
-  orm :mongoid4
+  # Currently supported options are :active_record, :mongoid2, :mongoid3, :mongo_mapper
+  orm :mongoid3
 
   # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do
-    raise "Please configure doorkeeper resource_owner_authenticator block located in #{__FILE__}"
-    # Put your resource owner authentication logic here.
-    # Example implementation:
-    #   User.find_by_id(session[:user_id]) || redirect_to(new_user_session_url)
+    current_user || warden.authenticate!(:scope => :user)
+  end
+
+  resource_owner_from_credentials do |routes|
+    User.authenticate!(params[:email], params[:password])
   end
 
   # If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.
@@ -32,7 +33,7 @@ Doorkeeper.configure do
   # Optional parameter :confirmation => true (default false) if you want to enforce ownership of
   # a registered application
   # Note: you must also run the rails g doorkeeper:application_owner generator to provide the necessary support
-  # enable_application_owner :confirmation => false
+  #enable_application_owner :confirmation => true
 
   # Define access token scopes for your provider
   # For more information go to https://github.com/applicake/doorkeeper/wiki/Using-Scopes
@@ -48,7 +49,7 @@ Doorkeeper.configure do
   # Change the way access token is authenticated from the request object.
   # By default it retrieves first from the `HTTP_AUTHORIZATION` header, then
   # falls back to the `:access_token` or `:bearer_token` params from the `params` object.
-  # Check out the wiki for mor information on customization
+  # Check out the wiki for more information on customization
   # access_token_methods :from_bearer_authorization, :from_access_token_param, :from_bearer_param
 
   # Change the test redirect uri for client apps
