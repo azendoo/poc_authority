@@ -1,9 +1,12 @@
 PocAuthority::Application.routes.draw do
+  devise_for :users
+
   use_doorkeeper do
     controllers :applications => 'oauth/applications'
   end
 
-  devise_for :users
+  root :to => 'oauth/applications#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

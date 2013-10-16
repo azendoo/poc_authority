@@ -3,7 +3,7 @@ class User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
@@ -39,12 +39,4 @@ class User
 
   ## Token authenticatable
   # field :authentication_token, :type => String
-
-  has_many :oauth_applications, class_name: 'Doorkeeper::Application', as: :owner
-
-  def self.authenticate!(email, password)
-    user = User.where(email: email).first
-    return (user.valid_password?(password) ? user : nil) unless user.nil?
-    nil
-  end
 end
