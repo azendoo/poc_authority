@@ -1,6 +1,6 @@
 class Oauth::ApplicationsController < Doorkeeper::ApplicationsController
   respond_to :html
-  before_filter :authenticate_user!
+#  before_filter :authenticate_user!
 
 #  def index
 #    @applications = current_user.applications
